@@ -1,4 +1,4 @@
-package com.danni.string;
+package string;
 
 public class IndexOfDemo {
 	
