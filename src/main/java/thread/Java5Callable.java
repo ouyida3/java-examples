@@ -45,7 +45,7 @@ public class Java5Callable {
 				System.out.println("done?" + done);
 
 				// get返回的是Future的泛型参数类型，这里就是String了
-				String s = result.get();
+				String s = result.get();// 注意，这里不能get！会等待！就不是并发了！要先用list放进去，再循环读取list获取结果。
 				System.out.println(s);
 			} catch (ExecutionException e1) {
 				e1.printStackTrace();
