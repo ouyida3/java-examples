@@ -7,51 +7,51 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * Java5»¹ĞÂÔöÁË Callable£¬ÓÃÓÚ·µ»ØÖµ£¬Çø±ğÓÚÎŞ·¨·µ»ØÖµµÄ Runnable¡£
+ * Java5è¿˜æ–°å¢äº† Callableï¼Œç”¨äºè¿”å›å€¼ï¼ŒåŒºåˆ«äºæ— æ³•è¿”å›å€¼çš„ Runnableã€‚
  * 
  * @author danni
  * @since 2018.9.23
- * @see ¡¶Thinking in Java Fourth Edition¡·
+ * @see ã€ŠThinking in Java Fourth Editionã€‹
  */
 public class Java5Callable {
 	public static void main(String[] args)
 			throws InterruptedException {
 		/**
-		 * ÕâÀï£¬ÎÒ¼ÌĞøÊ¹ÓÃ×î³£ÓÃµÄCachedÏß³Ì³Ø¡£
+		 * è¿™é‡Œï¼Œæˆ‘ç»§ç»­ä½¿ç”¨æœ€å¸¸ç”¨çš„Cachedçº¿ç¨‹æ± ã€‚
 		 */
 		ExecutorService e = Executors.newCachedThreadPool();
 
 		for (int i = 0; i < 3; i++) {
 			/**
-			 * Èë²Î±ä³ÉÁËCallable£¬¶ø²»ÊÇRunnable£¬Òò´Ëexecute·½·¨²»ÔÙ¿ÉÓÃ¡£
+			 * å…¥å‚å˜æˆäº†Callableï¼Œè€Œä¸æ˜¯Runnableï¼Œå› æ­¤executeæ–¹æ³•ä¸å†å¯ç”¨ã€‚
 			 * <p>
-			 * È¡¶ø´úÖ®µÄÊÇsubmit·½·¨¡£ È»¶ø£¬ÇëÎÊÕâÀï»¹ÊÇÃüÁîÄ£Ê½Âğ£¿
+			 * å–è€Œä»£ä¹‹çš„æ˜¯submitæ–¹æ³•ã€‚ ç„¶è€Œï¼Œè¯·é—®è¿™é‡Œè¿˜æ˜¯å‘½ä»¤æ¨¡å¼å—ï¼Ÿ
 			 */
-			// ²»ÒªÉµÉµµÄĞ´ÏÂÕâÃ´Ò»¾ä£¬ËüÊÇÓĞ·µ»ØµÄ£¡
+			// ä¸è¦å‚»å‚»çš„å†™ä¸‹è¿™ä¹ˆä¸€å¥ï¼Œå®ƒæ˜¯æœ‰è¿”å›çš„ï¼
 			// e.submit(new TaskWithResult());
-			// ¸ü²»ÒªÊÔÍ¼ÕâÃ´Ğ´£¬±àÒë´íÎó£¬·µ»ØµÄÊÇFuture
+			// æ›´ä¸è¦è¯•å›¾è¿™ä¹ˆå†™ï¼Œç¼–è¯‘é”™è¯¯ï¼Œè¿”å›çš„æ˜¯Future
 			// String result = e.submit(new TaskWithResult());
 
-			// Future·ºĞÍÕâ¸öÃüÃûºÜÓĞÒâË¼£¬Ò²ÊÇ1.5ÒıÈëµÄ
+			// Futureæ³›å‹è¿™ä¸ªå‘½åå¾ˆæœ‰æ„æ€ï¼Œä¹Ÿæ˜¯1.5å¼•å…¥çš„
 			Future<String> result = e
 					.submit(new TaskWithResult());
-			// Òª»ñÈ¡Future£¬µ÷ÓÃget¼´¿É£¬µ«»áÅ×³öÒì³£
+			// è¦è·å–Futureï¼Œè°ƒç”¨getå³å¯ï¼Œä½†ä¼šæŠ›å‡ºå¼‚å¸¸
 			try {
-				// idDoneÅĞ¶ÏÊÇ·ñÖ´ĞĞÍê£¬FutureÖ´ĞĞÍê£¬¾Í¿ÉÒÔµ÷ÓÃget»ñÈ¡¡£
-				// Äã¿ÉÄÜ»áÆæ¹Ö£¬Ã÷Ã÷Ã»Ö´ĞĞÍê£¬ÔõÃ´futureÒ²´ò³öÀ´ÁË£¿
-				// ÄÇÊÇÒòÎªÄãÍêÈ«¿ÉÒÔ²»µ÷ÓÃidDoneÅĞ¶Ï£¬Ö±½Óget£¬´ËÊ±£¬get»á×èÈû£¬
-				// Ö±µ½ÈÎÎñÍê³É£¬»ñÈ¡½á¹û¡£
+				// idDoneåˆ¤æ–­æ˜¯å¦æ‰§è¡Œå®Œï¼ŒFutureæ‰§è¡Œå®Œï¼Œå°±å¯ä»¥è°ƒç”¨getè·å–ã€‚
+				// ä½ å¯èƒ½ä¼šå¥‡æ€ªï¼Œæ˜æ˜æ²¡æ‰§è¡Œå®Œï¼Œæ€ä¹ˆfutureä¹Ÿæ‰“å‡ºæ¥äº†ï¼Ÿ
+				// é‚£æ˜¯å› ä¸ºä½ å®Œå…¨å¯ä»¥ä¸è°ƒç”¨idDoneåˆ¤æ–­ï¼Œç›´æ¥getï¼Œæ­¤æ—¶ï¼Œgetä¼šé˜»å¡ï¼Œ
+				// ç›´åˆ°ä»»åŠ¡å®Œæˆï¼Œè·å–ç»“æœã€‚
 				boolean done = result.isDone();
 				System.out.println("done?" + done);
 
-				// get·µ»ØµÄÊÇFutureµÄ·ºĞÍ²ÎÊıÀàĞÍ£¬ÕâÀï¾ÍÊÇStringÁË
+				// getè¿”å›çš„æ˜¯Futureçš„æ³›å‹å‚æ•°ç±»å‹ï¼Œè¿™é‡Œå°±æ˜¯Stringäº†
 				String s = result.get();
 				System.out.println(s);
 			} catch (ExecutionException e1) {
 				e1.printStackTrace();
 			} finally {
 				/**
-				 * ÕâÀï²»ÄÜshutdown¡£ Exception in thread "main"
+				 * è¿™é‡Œä¸èƒ½shutdownã€‚ Exception in thread "main"
 				 * java.util.concurrent.RejectedExecutionException: Task
 				 * java.util.concurrent.FutureTask@1f96302 rejected from
 				 * java.util.concurrent.ThreadPoolExecutor@14eac69[Terminated, pool size = 0,
@@ -62,8 +62,8 @@ public class Java5Callable {
 			}
 		}
 		/**
-		 * Í¬Ñù£¬ExecutorService²¢²»¹Ø×¢ÄãÖ´ĞĞµÄÊÇRunnable»¹ÊÇCallable£¬shutdownÊÇ±ØĞëµÄ¡£
-		 * »¹ÓĞĞèÒªË¼¿¼µÄÊÇ£¬ĞèÒª·ÅÔÚfnallyÖĞÂğ£¿
+		 * åŒæ ·ï¼ŒExecutorServiceå¹¶ä¸å…³æ³¨ä½ æ‰§è¡Œçš„æ˜¯Runnableè¿˜æ˜¯Callableï¼Œshutdownæ˜¯å¿…é¡»çš„ã€‚
+		 * è¿˜æœ‰éœ€è¦æ€è€ƒçš„æ˜¯ï¼Œéœ€è¦æ”¾åœ¨fnallyä¸­å—ï¼Ÿ
 		 */
 		e.shutdown();
 
@@ -72,13 +72,13 @@ public class Java5Callable {
 }
 
 /**
- * ĞèÒª×¢Òâ£¬CallableÊÇ·ºĞÍ£¬Ëü¾ßÓĞµÄÀàĞÍ²ÎÊı¿ÉÒÔÓÉÄãÀ´Ö¸¶¨¡£ÎÒÕâÀïÊÇString¡£
+ * éœ€è¦æ³¨æ„ï¼ŒCallableæ˜¯æ³›å‹ï¼Œå®ƒå…·æœ‰çš„ç±»å‹å‚æ•°å¯ä»¥ç”±ä½ æ¥æŒ‡å®šã€‚æˆ‘è¿™é‡Œæ˜¯Stringã€‚
  */
 class TaskWithResult implements Callable<String> {
 	static int id = 0;
 
 	/**
-	 * ²»ÓÃµ£ĞÄ·µ»ØµÄÀàĞÍ£¬eclipse»á¸ù¾İ·ºĞÍ×Ô¶¯Éú³É¡£
+	 * ä¸ç”¨æ‹…å¿ƒè¿”å›çš„ç±»å‹ï¼Œeclipseä¼šæ ¹æ®æ³›å‹è‡ªåŠ¨ç”Ÿæˆã€‚
 	 */
 	@Override
 	public String call() throws Exception {

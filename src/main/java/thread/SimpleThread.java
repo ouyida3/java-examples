@@ -1,15 +1,15 @@
 package thread;
 
 /**
- * ¼òµ¥µÄÏß³ÌÀà¡£
+ * ç®€å•çš„çº¿ç¨‹ç±»ã€‚
  * 
- * ÔÚjava5Ö®Ç°£¬´ó¸ÅÊÇÕâÑù×ÓµÄ¡£
+ * åœ¨java5ä¹‹å‰ï¼Œå¤§æ¦‚æ˜¯è¿™æ ·å­çš„ã€‚
  * 
  * @author danni
  * @since 2018.9.23(Sunday)
- * @date 2018.9.23 ÎÒĞ´ÏÂÕâ¸ö£¬ÊÇÒªËµÃ÷£¬ÕâÑù×ÓĞ´£¬javadoc¸ù±¾Ê¶±ğ²»ÁË¡£
- * @Date 2018.9.23 Èç¹ûÕâÑù×ÓĞ´£¬¾Í¸ü¿ÉĞ¦ÁË£¬»áÖ¸Ïòjava.util.DateÀà¡£
- * @see ¡¶Thinking in Java Fourth Edition¡·£¨²»ºÃÒâË¼£¬Ã»Á´½Ó£©
+ * @date 2018.9.23 æˆ‘å†™ä¸‹è¿™ä¸ªï¼Œæ˜¯è¦è¯´æ˜ï¼Œè¿™æ ·å­å†™ï¼Œjavadocæ ¹æœ¬è¯†åˆ«ä¸äº†ã€‚
+ * @Date 2018.9.23 å¦‚æœè¿™æ ·å­å†™ï¼Œå°±æ›´å¯ç¬‘äº†ï¼Œä¼šæŒ‡å‘java.util.Dateç±»ã€‚
+ * @see ã€ŠThinking in Java Fourth Editionã€‹ï¼ˆä¸å¥½æ„æ€ï¼Œæ²¡é“¾æ¥ï¼‰
  */
 public class SimpleThread {
 	public static void main(String[] args) {
@@ -20,16 +20,16 @@ public class SimpleThread {
 		 */
 		// LiftOff l = new LiftOff();
 
-		// µ¥Ïß³Ì£¬²¢ÇÒÔÚ±¾Ïß³ÌÖĞÔËĞĞ
+		// å•çº¿ç¨‹ï¼Œå¹¶ä¸”åœ¨æœ¬çº¿ç¨‹ä¸­è¿è¡Œ
 		new SimpleThread().new LiftOff().run();
 
-		// µ¥Ïß³Ì£¬ĞÂÆôÏß³ÌÔËĞĞ
+		// å•çº¿ç¨‹ï¼Œæ–°å¯çº¿ç¨‹è¿è¡Œ
 		Thread thread = new Thread(new SimpleThread().new LiftOff());
 		thread.start();
-		// ²»ÒªstartÁ½´Î£¬»áÅ×³öÏß³Ì×´Ì¬Òì³££ºjava.lang.IllegalThreadStateException
+		// ä¸è¦startä¸¤æ¬¡ï¼Œä¼šæŠ›å‡ºçº¿ç¨‹çŠ¶æ€å¼‚å¸¸ï¼šjava.lang.IllegalThreadStateException
 		//thread.start();
 
-		// ¶àÏß³Ì
+		// å¤šçº¿ç¨‹
 		for (int i = 0; i < 3; i++) {
 			Thread threads = new Thread(new SimpleThread().new LiftOff());
 			threads.start();
@@ -44,7 +44,7 @@ public class SimpleThread {
 			while (i-- > 0) {
 				System.out.println("hello:" + i);
 
-				// ¶ÔÏß³Ìµ÷¶ÈÆ÷µÄÒ»ÖÖ½¨Òé£ºÎÒÒÑÍê³ÉÖØÒªÈÎÎñ£¬´ËÊ±ÕıÊÇÇĞ»»¸øÆäËûÈÎÎñÖ´ĞĞµÄ´óºÃÊ±»ú
+				// å¯¹çº¿ç¨‹è°ƒåº¦å™¨çš„ä¸€ç§å»ºè®®ï¼šæˆ‘å·²å®Œæˆé‡è¦ä»»åŠ¡ï¼Œæ­¤æ—¶æ­£æ˜¯åˆ‡æ¢ç»™å…¶ä»–ä»»åŠ¡æ‰§è¡Œçš„å¤§å¥½æ—¶æœº
 				Thread.yield();
 			}
 		}
