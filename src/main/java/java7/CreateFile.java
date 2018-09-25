@@ -11,6 +11,8 @@ public class CreateFile {
 
 	public static void main(String[] args) throws IOException {
 		createFile();
+		
+		
 		createNonDirAndFile();
 	}
 
@@ -33,6 +35,7 @@ public class CreateFile {
 		Path path = Paths.get("./", "UTWX001.txt");// 在src同级目录生成文件
 		byte[] bytes = "test".getBytes();
 		Files.write(path, bytes);
+		Files.write(path, "abcd".getBytes());// 会把刚才的test字符覆盖掉
 		Logger.getGlobal().info("write file finished.");
 	}
 }
