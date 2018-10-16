@@ -1,10 +1,12 @@
 package java8;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Datetime {
 
@@ -26,9 +28,34 @@ public class Datetime {
 		Date resultDate = Date.from(instant);
 		return resultDate;
 	}
-	
+
 	public static void main(String[] args) throws Exception {
-		System.out.println(moveNatureMonths(new Date(), 1));
+		//System.out.println(moveNatureMonths(new Date(), 1));
+		betweenTime();
+	}
+
+	/**
+	 * 复杂
+	 */
+	public static void betweenDateTime() throws InterruptedException {
+		LocalDateTime startTime = LocalDateTime.now();
+		Thread.sleep(500);
+		LocalDateTime finishedTime = LocalDateTime.now();
+		Instant startInstant = startTime.atZone(ZoneId.systemDefault()).toInstant();
+		Instant endInstant = finishedTime.atZone(ZoneId.systemDefault()).toInstant();
+		Duration duration = Duration.between(startInstant, endInstant);
+		Logger.getGlobal().info(() -> duration.getSeconds() +"." + duration.getNano()); 
+	}
+	
+	/**
+	 * 简单
+	 */
+	public static void betweenTime() throws InterruptedException {
+		LocalDateTime startTime = LocalDateTime.now();
+		Thread.sleep(500);
+		LocalDateTime finishedTime = LocalDateTime.now();
+		Duration duration = Duration.between(startTime, finishedTime);
+		Logger.getGlobal().info(() -> duration.getSeconds() +"." + duration.getNano()); 
 	}
 
 }
